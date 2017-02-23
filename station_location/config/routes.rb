@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   resources :locations, only: [:index, :create, :new]
 
   resources :users, only: [:show, :create, :new]
