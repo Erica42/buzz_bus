@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'shotgun'
 gem 'bcrypt'
 gem 'faker'
+gem 'pry'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -59,6 +60,7 @@ group :test do
   gem 'rack-test'
   gem 'rspec'
   gem 'capybara'
+  gem 'jasmine-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
