@@ -1,6 +1,13 @@
 $(document).ready(function() {
   //function that calls bus json
-  handleBuses();
+  // handleBuses();
+  busesOnRoutes("1");
+  var alltheBuses;
+  // $("#get_buses").on('submit', function(e){
+  //   handleBuses();
+
+  // })
+
   $("#set_destination").on("submit", function(e){
     e.preventDefault();
      var locationData = $(this).serialize();
@@ -51,17 +58,24 @@ function parseBus(response_json) {
   return allBuses;
 }
 
-function handleBuses() {
+ function busesOnRoutes(routeId){
   var promiseFromAjax = fetchBuses();
+  var busesByRoute = [];
   promiseFromAjax.done(function(response_json) {
-    parseBus(response_json)
+    var allBuses = parseBus(response_json);
+    for(var i=0; i < allBuses.length; i++){
+      if (allBuses[i].routeId === routeId){
+        busesByRoute.push(allBuses[i])
+      }
+    }
+    alltheBuses = busesByRoute;
   })
  }
 
- function sendBuses(bus){
-  $("#show_buses").append(bus);
-}
+ function closestBus(alltheBuses){
+  // var mylocation = gps
 
+ }
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), { center: {lat: -34.397, lng: 150.644}, zoom: 15
@@ -74,27 +88,40 @@ function initMap() {
       zIndex: 999,
       map: map
   });
-
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          this.pos = {
-          lat: 40.606023,
-          lng: -74.277078
-          // lat: position.coords.latitude,
-          // lng: position.coords.longitude
-        };
-          myloc.setPosition(pos);
-          map.setCenter(pos);
-          }, function() {
+  var busloc = new google.maps.Marker({ clickable: false,icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
+      new google.maps.Size(22,22),
+      new google.maps.Point(0,18),
+      new google.maps.Point(11,11)),
+      shadow: null,
+      zIndex: 999,
+      map: map
+  });
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      this.user_pos = {
+        // lat: 40.606023,
+        // lng: -74.277078
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      this.bus_pos = {
+        lat: 30.34975814819336,
+        lng: -97.7112045288086
+      }
+        myloc.setPosition(user_pos);
+        map.setCenter(user_pos);
+        busloc.setPosition(bus_pos);
+        // map.setCenter(bus_pos);
+        }
+        , function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
-        }
-
-        else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
+  }
+    else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
       }
+    }
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
