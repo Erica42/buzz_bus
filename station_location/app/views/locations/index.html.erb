@@ -14,16 +14,18 @@
 
 <% if session[:user_id] != nil %>
 
-<div id="set_route">Select your Route:</div>
+  <div id="set_route">Select your Route:</div>
   <form id="set_route">
-  <%= select_tag(:route_id, options_for_select(["Routes", "1"])) %>
-  <button id="set_route">Set Route</button>
+    <%= select_tag(:route_id, options_for_select(["Routes", "1"])) %>
+    <button id="set_route">Set Route</button>
   </form>
 
 
-<div id="bus_form">
+  <div id="bus_form">
+  </div>
 
-</div>
+  <div id="stop_form">
+  </div>
 
 <% end %>
 
