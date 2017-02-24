@@ -39,6 +39,7 @@ gem 'shotgun'
 gem 'bcrypt'
 gem 'faker'
 gem 'pry'
+gem 'json'
 gem 'nokogiri'
 
 group :development, :test do
