@@ -2,7 +2,13 @@ $(document).ready(function() {
   //function that calls bus json
   // handleBuses();
   busesOnRoutes("1");
+  // geoFindMe()
   var alltheBuses;
+  // userLocation = {
+  //       lat: 30.34975814819336,
+  //       lng: -97.7112045288086
+  //     };
+  // findClosestBus(alltheBuses, userLocation);
   // $("#get_buses").on('submit', function(e){
   //   handleBuses();
 
@@ -69,38 +75,39 @@ function parseBus(response_json) {
       }
     }
     alltheBuses = busesByRoute;
+    findClosestBus(alltheBuses, userLocation);
   })
  }
 
- function closestBus(alltheBuses){
-  // var mylocation = gps
-
+function setBlueDot(setMap){
+  var map = setMap;
+  var location = new google.maps.Marker({ clickable: false,icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
+      new google.maps.Size(22,22),
+      new google.maps.Point(0,18),
+      new google.maps.Point(11,11)),
+      shadow: null,
+      zIndex: 999,
+      map: map
+  });
+   return location;
  }
 
+ // function findClosestBus(buses, userLocation) {
+ //  var userLat = Math.round((userLocation.latitude*1000000)/1000000)
+ //  var userLong = Math.round((userLocation.longitude*1000000)/1000000)
+ //  for(i=0; i<buses.length; i++){
+ //    if(bus[i])
+ //  }
+ // }
+
 function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), { center: {lat: -34.397, lng: 150.644}, zoom: 15
+  var map = new google.maps.Map(document.getElementById('map'), { center: {lat: 30.34975814819336, lng: -97.7112045288086}, zoom: 15
     });
-  var myloc = new google.maps.Marker({ clickable: false,icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
-      new google.maps.Size(22,22),
-      new google.maps.Point(0,18),
-      new google.maps.Point(11,11)),
-      shadow: null,
-      zIndex: 999,
-      map: map
-  });
-  var busloc = new google.maps.Marker({ clickable: false,icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
-      new google.maps.Size(22,22),
-      new google.maps.Point(0,18),
-      new google.maps.Point(11,11)),
-      shadow: null,
-      zIndex: 999,
-      map: map
-  });
+  var myloc = setBlueDot(map);
+  var busloc = setBlueDot(map);
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       this.user_pos = {
-        // lat: 40.606023,
-        // lng: -74.277078
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
@@ -111,11 +118,11 @@ function initMap() {
         myloc.setPosition(user_pos);
         map.setCenter(user_pos);
         busloc.setPosition(bus_pos);
-        // map.setCenter(bus_pos);
+        map.setCenter(bus_pos);
         }
         , function() {
             handleLocationError(true, infoWindow, map.getCenter());
-          });
+    });
   }
     else {
       // Browser doesn't support Geolocation
@@ -129,3 +136,14 @@ function initMap() {
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
   }
+
+// function geoFindMe() {
+//   function success(position) {
+//     var location = {
+//         latitude: position.coords.latitude,
+//         longitude: position.coords.longitude
+//     }
+//     return location;
+//   }
+//   navigator.geolocation.getCurrentPosition(success);
+// }
