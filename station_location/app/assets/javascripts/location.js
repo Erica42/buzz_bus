@@ -1,38 +1,31 @@
 $(document).ready(function() {
   //function that calls bus json
-  // handleBuses();
-  busesOnRoutes("1");
-  // geoFindMe()
-  var alltheBuses;
-  // userLocation = {
-  //       lat: 30.34975814819336,
-  //       lng: -97.7112045288086
-  //     };
-  // findClosestBus(alltheBuses, userLocation);
-  // $("#get_buses").on('submit', function(e){
-  //   handleBuses();
-
-  // })
-
-  $("#set_destination").on("submit", function(e){
+  var userRoute = ""
+  $("form#set_route").on('submit', function(e){
     e.preventDefault();
-     var locationData = $(this).serialize();
-    $.ajax({
-      url: '/locations/new',
-      type: 'POST',
-      data: locationData,
-      dataType: 'json'
-    }).done(function(response){
-      var interval = setInterval(function(){
-      initMap();
-      if (this.pos.lat.toString() === response.latitude && this.pos.lng.toString() === response.longitude) {
-        document.getElementById('bell').play();
-        document.getElementById('phone').click();
-        clearInterval(interval);
-      }
-      }, 5000);
-   });
-  });
+    var userRoute = $("#route_id").val()
+    fetchBuses();
+  })
+
+  // $("#set_destination").on("submit", function(e){
+  //   e.preventDefault();
+  //    var locationData = $(this).serialize();
+  //   $.ajax({
+  //     url: '/locations/new',
+  //     type: 'POST',
+  //     data: locationData,
+  //     dataType: 'json'
+  //   }).done(function(response){
+  //     var interval = setInterval(function(){
+  //     initMap();
+  //     if (this.pos.lat.toString() === response.latitude && this.pos.lng.toString() === response.longitude) {
+  //       document.getElementById('bell').play();
+  //       document.getElementById('phone').click();
+  //       clearInterval(interval);
+  //     }
+  //     }, 5000);
+  //  });
+  // });
 });
 
 var Bus = function(label, longitude, latitude, bearing, routeId){
@@ -43,10 +36,30 @@ var Bus = function(label, longitude, latitude, bearing, routeId){
   this.routeId = routeId;
 }
 
-function fetchBuses(){
+function callback(response_json){
+  var allBuses = parseBus(response_json);
+  var routeId = "1";
+  var busesByRoute = [];
+  for(var i=0; i < allBuses.length; i++){
+      if (allBuses[i].routeId === routeId){
+        busesByRoute.push(allBuses[i])
+      }
+    }
+    var data = JSON.stringify(busesByRoute);
+    // ajax call to server route and save buses in database
+  $.ajax({
+    url: "/buses",
+    method: "POST",
+    data: {data}
+  }).done(function(response){
+    $("#bus_form").append(response)
+  });
+}
+
+function fetchBuses(userRoute){
+  var routeId = userRoute
   var url = "https://lnykjry6ze.execute-api.us-west-2.amazonaws.com/prod/gtfsrt-debug?url=https://data.texas.gov/download/eiei-9rpf/application/octet-stream"
-  var requestPromise = $.ajax({url: url, method: "GET"});
-  return requestPromise;
+  return $.ajax({url: url, method: "GET", success: callback});
 }
 
 function parseBus(response_json) {
@@ -64,20 +77,21 @@ function parseBus(response_json) {
   return allBuses;
 }
 
- function busesOnRoutes(routeId){
-  var promiseFromAjax = fetchBuses();
-  var busesByRoute = [];
-  promiseFromAjax.done(function(response_json) {
-    var allBuses = parseBus(response_json);
-    for(var i=0; i < allBuses.length; i++){
-      if (allBuses[i].routeId === routeId){
-        busesByRoute.push(allBuses[i])
-      }
-    }
-    alltheBuses = busesByRoute;
-    findClosestBus(alltheBuses, userLocation);
-  })
- }
+ // function busesOnRoutes(routeId){
+ //  // var promiseFromAjax = fetchBuses();
+ //  // var busesByRoute = [];
+ //  // promiseFromAjax.done(function(response_json) {
+ //  //   var allBuses = parseBus(response_json);
+ //  //   for(var i=0; i < allBuses.length; i++){
+ //  //     if (allBuses[i].routeId === routeId){
+ //  //       busesByRoute.push(allBuses[i])
+ //  //     }
+ //  //   }
+ //  //   console.log(busesByRoute)
+ //  //   // findClosestBus(alltheBuses, userLocation);
+ //  // })
+
+ // }
 
 function setBlueDot(setMap){
   var map = setMap;
