@@ -1,0 +1,7 @@
+<div id="set_bus">Select your Bus:</div>
+<%= form_for(:location, url: new_location_path, method: "get") do |f| %>
+<%= select_tag(:bus_id, options_for_select(all_buses)) %>
+<div class="bus_group">
+  <div class="col-sm-offset-2 col-sm-6"><%= f.submit "Set Destination", class: "btn btn-large btn-primary" %></div>
+</div>
+<% end %>

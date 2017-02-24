@@ -10,17 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223210214) do
+ActiveRecord::Schema.define(version: 20170224181206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "buses", force: :cascade do |t|
-    t.string   "label",      null: false
-    t.float    "latitude",   null: false
-    t.float    "longitude",  null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "label",                   null: false
+    t.float    "latitude",                null: false
+    t.float    "longitude",               null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "bearing",    default: ""
+    t.string   "routeId",    default: ""
   end
 
   create_table "locations", force: :cascade do |t|
