@@ -5,12 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Location.delete_all
-
-Location.create(name: "Rahway", latitude: 40.606023, longitude: -74.277078 )
-Location.create(name: "Linden", latitude: 40.629779, longitude: -74.250908 )
-Location.create(name: "Elizabeth", latitude: 40.666778, longitude: -74.215761)
-Location.create(name: "Newark Airport Station", latitude: 40.704392, longitude: -74.190708)
-Location.create(name: "Newark Penn Station", latitude: 40.734647, longitude: -74.164431)
-Location.create(name: "Seacus Junction", latitude: 40.761661, longitude: -74.074374 )
-Location.create(name: "New York Penn Station", latitude: 40.750568, longitude: -73.993519 )
+#Location.delete_all
+#
+#Location.create(name: "Rahway", latitude: 40.606023, longitude: -74.277078 )
+#Location.create(name: "Linden", latitude: 40.629779, longitude: -74.250908 )
+#Location.create(name: "Elizabeth", latitude: 40.666778, longitude: -74.215761)
+#Location.create(name: "Newark Airport Station", latitude: 40.704392, longitude: -74.190708)
+#Location.create(name: "Newark Penn Station", latitude: 40.734647, longitude: -74.164431)
+#Location.create(name: "Seacus Junction", latitude: 40.761661, longitude: -74.074374 )
+#Location.create(name: "New York Penn Station", latitude: 40.750568, longitude: -73.993519 )
+Route.pull_routes.each do |route|
+	Route.create(id: route["route_id"], name: route["name"] )
+end
+Route.pull_routes.count.each do |route|
+	Stop.pull_stops(route.id).each do |stop|
+		Stop.create(stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"] )
+	end
+end
