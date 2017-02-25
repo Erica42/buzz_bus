@@ -12,7 +12,7 @@ function setBlueDot(setMap){
  }
 
  function initMap(currentBus) {
-  var map = new google.maps.Map(document.getElementById('map'), { center: {lat: 30.34975814819336, lng: -97.7112045288086}, zoom: 15
+  var map = new google.maps.Map(document.getElementById('map'), { center: {lat: currentBus[0].latitude, lng: currentBus[0].longitude}, zoom: 15
     });
   var myloc = setBlueDot(map);
   var busloc = setBlueDot(map);

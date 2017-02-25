@@ -3,6 +3,15 @@ $(document).ready(function() {
     e.preventDefault();
     busId = $("#bus_label").val();
     fetchBus(busId)
+
+    var interval = setInterval(function(){
+      fetchBus(busId);
+      // if (this.pos.lat.toString() === response.latitude && this.pos.lng.toString() === response.longitude) {
+      //   document.getElementById('bell').play();
+      //   document.getElementById('phone').click();
+      //   clearInterval(interval);
+      // }
+      }, 30000)
   // $("#set_destination").on("submit", function(e){
   //   e.preventDefault();
   //    var locationData = $(this).serialize();
