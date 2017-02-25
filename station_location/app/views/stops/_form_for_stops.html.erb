@@ -1,7 +1,0 @@
-<div id="set_stop">Select your Stop:</div>
-  <%= form_for(:location, url: new_location_path, method: "get") do |f| %>
-  <%= select_tag(:stop_id, options_for_select(all_stops)) %>
-  <div class="stop_group">
-    <div class="col-sm-offset-2 col-sm-6"><%= f.submit "Set Your Destination", class: "btn btn-large btn-primary" %></div>
-  </div>
-<% end %>

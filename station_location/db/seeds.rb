@@ -14,11 +14,17 @@
 #Location.create(name: "Newark Penn Station", latitude: 40.734647, longitude: -74.164431)
 #Location.create(name: "Seacus Junction", latitude: 40.761661, longitude: -74.074374 )
 #Location.create(name: "New York Penn Station", latitude: 40.750568, longitude: -73.993519 )
+# Route.all.destroy
+# Location.all.destroy
+
+
+# Route.pull_routes.each do |route|
+# 	Route.create(id: route["route_id"], name: route["name"] )
+# end
 Route.pull_routes.each do |route|
-	Route.create(id: route["route_id"], name: route["name"] )
-end
-Route.pull_routes.count.each do |route|
-	Stop.pull_stops(route.id).each do |stop|
-		Stop.create(stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"] )
+  binding.pry
+	Location.pull_stops(route["route_id"]).each do |stop|
+    binding.pry
+		Location.create(stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"] )
 	end
 end

@@ -1,10 +1,13 @@
 class CreateLocations < ActiveRecord::Migration[5.0]
   def change
     create_table :locations do |t|
-      t.string :name, { null: false }
-      t.float :latitude, { null: false }
-      t.float :longitude, { null: false }
-
+      t.integer :stop_id
+      t.string :stop_name, {null: false}
+      t.string :stop_desc, {null: false}
+      t.integer :route_id
+      t.integer :direction_id, {null: false}
+      t.float :stop_lat, {null: false}
+      t.float :stop_lon, {null: false}
       t.timestamps
     end
   end
