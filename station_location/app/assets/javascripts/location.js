@@ -1,10 +1,9 @@
 $(document).ready(function() {
   //function that calls bus json
-  var userRoute = ""
   $("form#set_route").on('submit', function(e){
     e.preventDefault();
-    var userRoute = $("#route_id").val()
-    fetchBuses();
+    userRoute = $("#route_id").val()
+    fetchBuses(userRoute);
   })
 
   // $("#set_destination").on("submit", function(e){
@@ -38,7 +37,7 @@ var Bus = function(label, longitude, latitude, bearing, routeId){
 
 function callback(response_json){
   var allBuses = parseBus(response_json);
-  var routeId = "1";
+  var routeId = userRoute;
   var busesByRoute = [];
   for(var i=0; i < allBuses.length; i++){
       if (allBuses[i].routeId === routeId){
@@ -46,20 +45,22 @@ function callback(response_json){
       }
     }
     var data = JSON.stringify(busesByRoute);
-    // ajax call to server route and save buses in database
+    // ajax call to server route and grab buses
   $.ajax({
     url: "/buses",
     method: "POST",
     data: {data}
   }).done(function(response){
+    $("#bus_form").html("");
     $("#bus_form").append(response)
   });
 }
 
 function fetchBuses(userRoute){
-  var routeId = userRoute
+  // var routeId = userRoute;
+  console.log(userRoute)
   var url = "https://lnykjry6ze.execute-api.us-west-2.amazonaws.com/prod/gtfsrt-debug?url=https://data.texas.gov/download/eiei-9rpf/application/octet-stream"
-  return $.ajax({url: url, method: "GET", success: callback});
+  return $.ajax({url: url, method: "GET", data: userRoute, success: callback});
 }
 
 function parseBus(response_json) {
@@ -77,22 +78,6 @@ function parseBus(response_json) {
   return allBuses;
 }
 
- // function busesOnRoutes(routeId){
- //  // var promiseFromAjax = fetchBuses();
- //  // var busesByRoute = [];
- //  // promiseFromAjax.done(function(response_json) {
- //  //   var allBuses = parseBus(response_json);
- //  //   for(var i=0; i < allBuses.length; i++){
- //  //     if (allBuses[i].routeId === routeId){
- //  //       busesByRoute.push(allBuses[i])
- //  //     }
- //  //   }
- //  //   console.log(busesByRoute)
- //  //   // findClosestBus(alltheBuses, userLocation);
- //  // })
-
- // }
-
 function setBlueDot(setMap){
   var map = setMap;
   var location = new google.maps.Marker({ clickable: false,icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
@@ -106,13 +91,6 @@ function setBlueDot(setMap){
    return location;
  }
 
- // function findClosestBus(buses, userLocation) {
- //  var userLat = Math.round((userLocation.latitude*1000000)/1000000)
- //  var userLong = Math.round((userLocation.longitude*1000000)/1000000)
- //  for(i=0; i<buses.length; i++){
- //    if(bus[i])
- //  }
- // }
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), { center: {lat: 30.34975814819336, lng: -97.7112045288086}, zoom: 15
