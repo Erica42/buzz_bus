@@ -14,8 +14,6 @@
 #Location.create(name: "Newark Penn Station", latitude: 40.734647, longitude: -74.164431)
 #Location.create(name: "Seacus Junction", latitude: 40.761661, longitude: -74.074374 )
 #Location.create(name: "New York Penn Station", latitude: 40.750568, longitude: -73.993519 )
-Route.all.destroy
-Location.all.destroy
 
 
 Route.pull_routes.each do |route|

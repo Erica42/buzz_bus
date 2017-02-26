@@ -18,7 +18,7 @@ function setBlueDot(setMap){
   var busloc = setBlueDot(map);
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log(currentBus[0].latitude)
+      // console.log(currentBus[0].latitude)
       this.user_pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude

@@ -4,6 +4,7 @@
     <ul>
     <% if signed_in? %>
       <li><%= link_to current_user.email, current_user %></li>
+      <li><a id="phone" href='/locations/new'><%= User.find(session[:user_id]).phone %></a></li>
       <li><%= link_to "Sign Out", signout_path, method: :delete %></li>
     <% else %>
       <li><%= link_to "Sign In", new_session_path %></li>
