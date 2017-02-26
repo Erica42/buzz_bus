@@ -8,24 +8,17 @@ class LocationsController < ApplicationController
   end
 
   def create
-    binding.pry
-    locations = Location.all.where(route_id: params[:data])
-    @allLocations = []
-    locations.each do |location|
-      @allLocations << location
+    @locations = Location.where(route_id: params[:route_id].to_i, direction_id: params[:direction_id].to_i)
+    @all_locations = []
+    @locations.each do |location|
+      @all_locations << location.stop_name
     end
-    @allLocations
+    @all_locations
     render partial: "form_for_locations",
       locals:{ allLocations:
-    locations_for_select(@allLocations) }
+    locations_for_select(@all_locations) }
+
   end
-    # @location = Location.find(params[:category_id])
-    # params = { name: @location.name, latitude: @location.latitude.to_s, longitude: @location.longitude.to_s }.to_json
-    # if request.xhr?
-    #   params
-    # else
-    #   redirect_to locations_path
-    # end
 
   def new
     @user = User.find(current_user)

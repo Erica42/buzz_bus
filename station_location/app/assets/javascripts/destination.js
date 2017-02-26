@@ -1,40 +1,30 @@
-$(document).ready(function() {
-  //function that calls bus json
-  $("form#stop_form").on('click', "#select_location",  function(e){
-    e.preventDefault();
-    stopId = $("#location_lable").val();
-    fetchLocations(userRoute);
-  })
-});
+// $(document).ready(function() {
+//   //function that calls bus json
+//   $("form#stop_form").on('click', "#select_location",  function(e){
+//     e.preventDefault();
+//     stopId = $("#location_lable").val();
+//     fetchLocations(userRoute);
+//   })
+// });
 
-function locationCallBack(response_json){
-  var allLocations = parseStops(response_json)
-  var routeID = userRoute;
-  var locationsByRoute = [];
-  for(var i=0; i < allLocations.length; i++){
-    if (allLocations[i].routeID === routeID){
-      locationsByRoute.push(allLocations[i])
-    }
-  }
-  var data = JSON.stringify(locationsByRoute);
-  $.ajax({
-    url:"/locations",
-    method: "POST",
-    data: {data}
-  }).done(function(response){
-    $("#stop_form").html("");
-    $("#stop_form").append(response)
-  });
-}
+// function locationCallBack(response_json){
+//   var allLocations = parseStops(response_json) //this line is messed up
+//   var routeID = userRoute;
+//   var locationsByRoute = [];
+//   for(var i=0; i < allLocations.length; i++){
+//     if (allLocations[i].routeID === routeID){
+//       locationsByRoute.push(allLocations[i])
+//     }
+//   }
+//   var data = JSON.stringify(locationsByRoute);//this line needs work
+//   $.ajax({
+//     url:"/locations",
+//     method: "POST",
+//     data: {data}
+//   })
 
-function fetchLocations(userRoute){
-  debugger
-  $.ajax({
-    url: "/locations",
-    method: "GET"
-    data: userRoute,
-    success: locationCallBack})
-}
+
+
 // function parseLocation(response) {
 //   var allBuses = [];
 //   var busNum = response_json.entity.length;
