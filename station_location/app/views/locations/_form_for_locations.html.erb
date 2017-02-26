@@ -5,11 +5,11 @@
 </form> -->
 
 <div>Select your Destination:</div>
-<form id="select_location">
-<select name="destination">
+<form>
+<select id="select_location" name="destination">
   <% all_locations.each do |location| %>
-  <option value="<%= [location[1],location[2]] %>"><%= location[0] %></option>
+  <option value="<%= [location[1], location[2]] %>"><%= location[0] %></option>
   <% end %>
-  <input type="submit" value="Set Destination">
+  <input id='set_destination' type="submit" value="Set Destination">
   </select>
 </form>

@@ -1,36 +1,22 @@
 $(document).ready(function() {
-  $("#bus_form").on('click', "#select_bus", function(e){
+  busGps = null;
+  $("#stop_form").on('click', "#set_destination", function(e){
     e.preventDefault();
+    stopGps = JSON.parse(($('#select_location').val()))
     busId = $("#bus_label").val();
-    fetchBus(busId)
-
+    var stopLocation = { lat: stopGps[0], lng: stopGps[1] };
+    var busLocation = { lat: 0, lng: 0 }
+    fetchBus(busId);
     var interval = setInterval(function(){
       fetchBus(busId);
-      // if (this.pos.lat.toString() === response.latitude && this.pos.lng.toString() === response.longitude) {
-      //   document.getElementById('bell').play();
-      //   document.getElementById('phone').click();
-      //   clearInterval(interval);
-      // }
+
+      busLocation = { lat: busGps.latitude, lng: busGps.longitude }
+      if (arePointsNear(busLocation, stopLocation, .5)) {
+        document.getElementById('phone').click();
+        console.log("made it")
+        clearInterval(interval);
+      }
       }, 30000)
-  // $("#set_destination").on("submit", function(e){
-  //   e.preventDefault();
-  //    var locationData = $(this).serialize();
-  //   $.ajax({
-  //     url: '/locations/new',
-  //     type: 'POST',
-  //     data: locationData,
-  //     dataType: 'json'
-  //   }).done(function(response){
-  //     var interval = setInterval(function(){
-  //     initMap();
-  //     if (this.pos.lat.toString() === response.latitude && this.pos.lng.toString() === response.longitude) {
-  //       document.getElementById('bell').play();
-  //       document.getElementById('phone').click();
-  //       clearInterval(interval);
-  //     }
-  //     }, 5000);
-  //  });
-  // });
   })
 });
 
@@ -57,6 +43,7 @@ function callbackBus(response_json){
       }
     }
   initMap(busById);
+  busGps = busById[0]
 }
 
 function fetchBuses(userRoute){
@@ -80,8 +67,8 @@ function callback(response_json){
     method: "POST",
     data: {data}
   }).done(function(response){
-    $("#bus_form").html("");
-    $("#bus_form").append(response)
+    // $("#stop_form").html("");
+    $("#stop_form").append(response)
   });
 }
 
@@ -100,5 +87,40 @@ function parseBus(response_json) {
   return allBuses;
 }
 
+
+function arePointsNear(checkPoint, centerPoint, km) {
+    var ky = 40000 / 360;
+    var kx = Math.cos(Math.PI * centerPoint.lat / 180.0) * ky;
+    var dx = Math.abs(centerPoint.lng - checkPoint.lng) * kx;
+    var dy = Math.abs(centerPoint.lat - checkPoint.lat) * ky;
+    return Math.sqrt(dx * dx + dy * dy) <= km;
+}
+
+// var busLocation = { lat: 59.615911, lng: 16.544232 };
+// var stopLocation = { lat: 59.345635, lng: 18.059707 };
+
+// var n = arePointsNear(busLocation, stopLocation, .25);
+
+
+
+  // $("#set_destination").on("submit", function(e){
+  //   e.preventDefault();
+  //    var locationData = $(this).serialize();
+  //   $.ajax({
+  //     url: '/locations/new',
+  //     type: 'POST',
+  //     data: locationData,
+  //     dataType: 'json'
+  //   }).done(function(response){
+  //     var interval = setInterval(function(){
+  //     initMap();
+  //     if (this.pos.lat.toString() === response.latitude && this.pos.lng.toString() === response.longitude) {
+  //       document.getElementById('bell').play();
+  //       document.getElementById('phone').click();
+  //       clearInterval(interval);
+  //     }
+  //     }, 5000);
+  //  });
+  // });
 
 
