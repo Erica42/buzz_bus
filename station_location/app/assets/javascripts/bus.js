@@ -81,8 +81,7 @@ function callback(response_json){
     data: {data}
   }).done(function(response){
     $("#bus_form").html("");
-    $("#bus_form").append(response).hide()
-
+    $("#bus_form").append(response)
   });
 }
 

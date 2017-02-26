@@ -11,12 +11,10 @@ class LocationsController < ApplicationController
     @locations = Location.where(route_id: params[:route_id].to_i, direction_id: params[:direction_id].to_i)
     @all_locations = []
     @locations.each do |location|
-      @all_locations << location.stop_name
+      @all_locations << [location.stop_name, location.stop_lat, location.stop_lon]
     end
-    @all_locations
     render partial: "form_for_locations",
-      locals:{ allLocations:
-    locations_for_select(@all_locations) }
+      locals:{ all_locations: @all_locations }
 
   end
 
