@@ -8,6 +8,7 @@ class CreateLocations < ActiveRecord::Migration[5.0]
       t.integer :direction_id, {null: false}
       t.float :stop_lat, {null: false}
       t.float :stop_lon, {null: false}
+
       t.timestamps
     end
   end

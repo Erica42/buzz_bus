@@ -14,8 +14,8 @@
 #Location.create(name: "Newark Penn Station", latitude: 40.734647, longitude: -74.164431)
 #Location.create(name: "Seacus Junction", latitude: 40.761661, longitude: -74.074374 )
 #Location.create(name: "New York Penn Station", latitude: 40.750568, longitude: -73.993519 )
-# Route.all.destroy
-# Location.all.destroy
+Route.all.destroy
+Location.all.destroy
 
 
 Route.pull_routes.each do |route|
@@ -23,7 +23,16 @@ Route.pull_routes.each do |route|
 end
 
 Route.pull_routes.each do |route|
-	Location.pull_stops(route["route_id"]).each do |stop|
-		Location.create(stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"] )
-	end
+  direction = 0
+    Location.pull_stops(route["route_id"],direction).each do |stop|
+		  Location.create(stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"] )
+	 end
 end
+
+Route.pull_routes.each do |route|
+  direction = 1
+    Location.pull_stops(route["route_id"], direction).each do |stop|
+      Location.create(stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"] )
+   end
+end
+
