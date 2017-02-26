@@ -1,18 +1,21 @@
+require 'json'
 class LocationsController < ApplicationController
-  include SessionsHelper
+  include LocationsHelper
+  include SessionsHelper # do we need this for locations?
 
   def index
     @locations = Location.all
   end
 
   def create
-    @location = Location.find(params[:category_id])
-    params = { name: @location.name, latitude: @location.latitude.to_s, longitude: @location.longitude.to_s }.to_json
-    if request.xhr?
-      params
-    else
-      redirect_to locations_path
+    @locations = Location.where(route_id: params[:route_id].to_i, direction_id: params[:direction_id].to_i)
+    @all_locations = []
+    @locations.each do |location|
+      @all_locations << [location.stop_name, location.stop_lat, location.stop_lon]
     end
+    render partial: "form_for_locations",
+      locals:{ all_locations: @all_locations }
+
   end
 
   def new
