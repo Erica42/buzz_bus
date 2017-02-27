@@ -1,6 +1,6 @@
 function fetchDirection(userRoute){
   $.ajax({
-    url: "http://instabus.org/data/routes.json",
+    url: "https://instabus.org/data/routes.json",
     type: "GET",
     data: userRoute,
     success: callbackRoute
