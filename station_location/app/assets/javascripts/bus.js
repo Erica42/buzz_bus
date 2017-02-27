@@ -16,7 +16,7 @@ $(document).ready(function() {
         console.log("made it")
         clearInterval(interval);
       }
-      }, 30000)
+    }, 30000)
   })
 });
 
@@ -38,10 +38,10 @@ function callbackBus(response_json){
   var label = busId;
   var busById = [];
   for(var i=0; i < buses.length; i++){
-      if (buses[i].label === label){
-        busById.push(buses[i])
-      }
+    if (buses[i].label === label){
+      busById.push(buses[i])
     }
+  }
   initMap(busById);
   busGps = busById[0]
 }
@@ -56,10 +56,10 @@ function callback(response_json){
   var routeId = userRoute;
   var busesByRoute = [];
   for(var i=0; i < allBuses.length; i++){
-      if (allBuses[i].routeId === routeId){
+    if (allBuses[i].routeId === routeId){
         busesByRoute.push(allBuses[i])
-      }
     }
+  }
   var data = JSON.stringify(busesByRoute);
     // ajax call to server route and grab buses
   $.ajax({
@@ -89,38 +89,13 @@ function parseBus(response_json) {
 
 
 function arePointsNear(checkPoint, centerPoint, km) {
-    var ky = 40000 / 360;
-    var kx = Math.cos(Math.PI * centerPoint.lat / 180.0) * ky;
-    var dx = Math.abs(centerPoint.lng - checkPoint.lng) * kx;
-    var dy = Math.abs(centerPoint.lat - checkPoint.lat) * ky;
-    return Math.sqrt(dx * dx + dy * dy) <= km;
+  var ky = 40000 / 360;
+  var kx = Math.cos(Math.PI * centerPoint.lat / 180.0) * ky;
+  var dx = Math.abs(centerPoint.lng - checkPoint.lng) * kx;
+  var dy = Math.abs(centerPoint.lat - checkPoint.lat) * ky;
+  return Math.sqrt(dx * dx + dy * dy) <= km;
 }
 
-// var busLocation = { lat: 59.615911, lng: 16.544232 };
-// var stopLocation = { lat: 59.345635, lng: 18.059707 };
 
-// var n = arePointsNear(busLocation, stopLocation, .25);
-
-
-
-  // $("#set_destination").on("submit", function(e){
-  //   e.preventDefault();
-  //    var locationData = $(this).serialize();
-  //   $.ajax({
-  //     url: '/locations/new',
-  //     type: 'POST',
-  //     data: locationData,
-  //     dataType: 'json'
-  //   }).done(function(response){
-  //     var interval = setInterval(function(){
-  //     initMap();
-  //     if (this.pos.lat.toString() === response.latitude && this.pos.lng.toString() === response.longitude) {
-  //       document.getElementById('bell').play();
-  //       document.getElementById('phone').click();
-  //       clearInterval(interval);
-  //     }
-  //     }, 5000);
-  //  });
-  // });
 
 

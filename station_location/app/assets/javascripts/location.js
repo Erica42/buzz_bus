@@ -18,7 +18,7 @@ $(document).ready(function() {
       $("#bus_form").show();
       $("#stop_form").html("");
       $("#stop_form").append(response)
-  });
+    });
   });
 });
 
