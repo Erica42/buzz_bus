@@ -34,10 +34,10 @@ function setBlueDot(setMap){
           map.setCenter(bus_pos);
           }
           , function() {
-              handleLocationError(true, infoWindow, map.getCenter());
+              handleLocationError(true, map, map.getCenter());
       });
     } else {
-      handleLocationError(false, infoWindow, map.getCenter());
+      handleLocationError(false, map, map.getCenter());
     }
   }
 };
