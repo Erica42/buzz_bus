@@ -67,8 +67,9 @@ function callback(response_json){
     method: "POST",
     data: {data}
   }).done(function(response){
+    console.log("testing")
     $("#bus_form").html("");
-    $("#bus_form").append(response).hide()
+    $("#bus_form").append(response);
   });
 }
 

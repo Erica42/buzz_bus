@@ -15,6 +15,7 @@ $(document).ready(function() {
       method: "POST",
       data: {route_id: userRoute, direction_id: routeDirection}
     }).done(function(response){
+      console.log("fired")
       $("#bus_form").show();
       $("#stop_form").html("");
       $("#stop_form").append(response)
