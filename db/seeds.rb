@@ -17,14 +17,14 @@
 
 
 Route.pull_routes.each do |route|
-	Route.create(id: route["route_id"], name: route["name"] )
+	Route.create(id: route["route_id"], name: route["name"], active: "true" )
 end
 
 Route.pull_routes.each do |route|
   direction = 0
     Location.pull_stops(route["route_id"],direction).each do |stop|
     	if Location.where(direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"]).empty?
-		  	Location.create(stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"] )
+		  	Location.create(stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"], active: "true" )
 		  end
 	 end
 end
@@ -33,7 +33,7 @@ Route.pull_routes.each do |route|
   direction = 1
     Location.pull_stops(route["route_id"], direction).each do |stop|
     	if Location.where(direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"]).empty?
-      	Location.create(stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"] )
+      	Location.create(stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"], active: "true" )
    		end
    end
 end
