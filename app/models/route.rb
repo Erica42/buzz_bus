@@ -6,4 +6,8 @@ class Route < ApplicationRecord
   	uri = URI("http://instabus.org/data/routes.json")
   	return JSON.parse(Net::HTTP.get(uri))
   end
+
+  def self.update_routes
+  end
+  
 end
