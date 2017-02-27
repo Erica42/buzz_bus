@@ -1,0 +1,41 @@
+<header>
+<h1>Station Location</h1>
+  <nav>
+    <ul>
+    <% if signed_in? %>
+      <li><%= link_to current_user.email, current_user %></li>
+      <li><a id="phone" href='/locations/new'><%= User.find(session[:user_id]).phone %></a></li>
+      <li><%= link_to "Sign Out", signout_path, method: :delete %></li>
+    <% else %>
+      <li><%= link_to "Sign In", new_session_path %></li>
+    <% end %>
+    </ul>
+  </nav>
+</header>
+
+<% if session[:user_id] != nil %>
+<main>
+  <div id="route">Select your Route:</div>
+  <form id="set_route">
+    <input id="route_id" type="text">
+    <button id="set_route">Set Route</button>
+  </form>
+
+  <div id="route_form">
+  </div>
+
+  <div id="bus_form">
+  </div>
+
+  <div id="stop_form">
+  </div>
+
+<% end %>
+</main>
+
+<div id="map"></div>
+
+ <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDooIF08mMEEguEYandpeyRUdDwDaMNgh8&callback=initMap">
+</script>
+
