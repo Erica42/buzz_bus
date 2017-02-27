@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  //function that calls bus json
   $("form#set_route").on('submit', function(e){
     e.preventDefault();
     userRoute = $("#route_id").val()
