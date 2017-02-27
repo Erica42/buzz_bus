@@ -12,7 +12,7 @@ function setBlueDot(setMap){
  }
 
  function initMap(currentBus) {
-  if (currentBus != undefined) {
+  // if (currentBus != undefined) {
     var map = new google.maps.Map(document.getElementById('map'), { center: {lat: currentBus[0].latitude, lng: currentBus[0].longitude}, zoom: 15
       });
     var myloc = setBlueDot(map);
@@ -38,7 +38,7 @@ function setBlueDot(setMap){
     } else {
       handleLocationError(false, infoWindow, map.getCenter());
     }
-  }
+  // }
 };
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
