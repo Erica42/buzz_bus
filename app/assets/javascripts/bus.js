@@ -61,11 +61,10 @@ function callback(response_json){
     }
   }
   var data = JSON.stringify(busesByRoute);
-    // ajax call to server route and grab buses
   $.ajax({
     url: "/buses",
     method: "POST",
-    data: {data}
+    data: {data: data}
   }).done(function(response){
     console.log("testing")
     $("#bus_form").html("");

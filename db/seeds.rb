@@ -17,7 +17,7 @@
 
 
 Route.pull_routes.each do |route|
-	Route.create(route_id: route["route_id"], name: route["name"], active: true )
+  Route.create(route_id: route["route_id"], name: route["name"], headsign: route['directions'][0]['headsign'], active: true )
 end
 
 Route.pull_routes.each do |route|
