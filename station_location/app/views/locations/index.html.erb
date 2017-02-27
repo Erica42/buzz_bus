@@ -14,8 +14,8 @@
 </header>
 
 <% if session[:user_id] != nil %>
-
-  <div id="set_route">Select your Route:</div>
+<main>
+  <div id="route">Select your Route:</div>
   <form id="set_route">
     <input id="route_id" type="text">
     <button id="set_route">Set Route</button>
@@ -31,7 +31,7 @@
   </div>
 
 <% end %>
-
+</main>
 
 <div id="map"></div>
 

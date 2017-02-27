@@ -8,11 +8,37 @@ html, body {
   color: #fff;
 }
 
+main {
+  display: inline-block;
+  float: left;
+  margin-top: 35px;
+  width: 25%;
+}
+#route{
+  margin-bottom: 5px;
+}
+#route_form {
+  margin-top: 10px;
+}
+
+#bus_form {
+  margin-top: 5px;
+}
+
+#stop_form {
+  margin-top: 5px;
+}
+#select_direction, #set_route {
+  margin-left: 8px;
+  border-radius: 3px;
+}
+
+
 #map {
   display: inline-block;
   vertical-align: top;
   height: 75%;
-  width: 75%;
+  width: 65%;
   margin-right: 25px;
   float: right;
 }
@@ -25,7 +51,7 @@ html, body {
   display: inline-block;
   vertical-align: top;
   float: left;
-  width: 22%;
+  width: 20%;
   margin-top: 30px;
 }
 
