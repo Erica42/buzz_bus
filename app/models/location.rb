@@ -21,15 +21,15 @@ class Location < ApplicationRecord
   		update = []
   		Route.pull_routes.each do |route|
   			direction = (count)
-  			Location.pull_stops(route["route_id"], direction).each do |stop|
-  				if stop.is_a?(Hash)
-  					update << {stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"]}				
+  			if Location.pull_stops(route["route_id"], direction) != nil
+  				Location.pull_stops(route["route_id"], direction).each do |stop|
+  				update << {stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"]}				
   				end
   			end
   		end
   		##creates new stops if they exist
   		update.each do |stop| 
-  			if Location.where(stop) == nil
+  			if Location.where(stop).empty?
   				new_stop = Location.new(stop)
   				if new_stop.save
   					puts "Location #{stop} has been created"
