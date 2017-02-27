@@ -64,7 +64,7 @@ function callback(response_json){
   $.ajax({
     url: "/buses",
     method: "POST",
-    data: {data}
+    data: data
   }).done(function(response){
     console.log("testing")
     $("#bus_form").html("");
