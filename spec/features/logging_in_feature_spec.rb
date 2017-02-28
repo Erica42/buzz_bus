@@ -12,6 +12,7 @@ feature "Login to site" do
 		click_button('Sign Up')
 		expect(current_path).to eq "/locations"
 	end
+	#Issue with capybara logging back in after logout
 	scenario "user logs in after signup" do
 		visit '/'
 		click_link('Sign In')
@@ -28,8 +29,8 @@ feature "Login to site" do
 		click_button('Sign In')
 		expect(current_path).to eq "/locations"
 	end
-
-	scenario "user picks" do 
+	#Issue with javascript not rendering rest of page
+	scenario "user picks sets destination" do 
 		visit '/'
 		click_link('Sign In')
 		click_link('Sign up now!')
@@ -40,9 +41,9 @@ feature "Login to site" do
 		click_button('Sign Up')
 		choose( option: 0)
 		within("#set_route") do 
-			fill_in 'route_id'
+			fill_in 'route_id', with: '1'
+			binding.pry
 			click_button 'Set Route'
 		end
-		#waiting on a fix from erica
 	end
 end
