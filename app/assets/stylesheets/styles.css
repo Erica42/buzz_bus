@@ -252,6 +252,9 @@ input[type=submit] {
     width: 400px;
   }
 }
+#route {
+  margin-top: 10px;
+}
 
 @media only screen and (max-device-width: 650px) {
   #map {
