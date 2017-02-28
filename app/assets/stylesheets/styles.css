@@ -8,6 +8,16 @@ html, body {
   color: #fff;
 }
 
+.title img {
+  margin-top: -20px;
+  float: left;
+}
+.title h1 {
+  position: relative;
+  top: 18px;
+  left: 10px;
+}
+
 main {
   display: inline-block;
   margin-top: 35px;
