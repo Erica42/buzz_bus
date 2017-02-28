@@ -202,17 +202,19 @@ input[type=submit] {
   font-weight: bold;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 720px) {
   #map {
-    margin-top: 10px;
+    margin-top: 30px;
     height: 50%;
     width: 95%;
     float: none;
-    display: none;
+    display: block;
     vertical-align: none;
     margin-right: 10px;
+    text-align: center;
+    margin-bottom: 10px;
   }
-
+  
 /*  .form {
   width: 100%;
   }*/
@@ -230,6 +232,16 @@ input[type=submit] {
     width: 400px;
   }
 }
+
+@media only screen and (max-device-width: 650px) {
+  #map {
+    width: 98%;
+    height: 50%;
+    display: inline-block;
+    text-align: center;
+  }
+}
+
 /*.form {
   display: inline-block;
   vertical-align: top;
