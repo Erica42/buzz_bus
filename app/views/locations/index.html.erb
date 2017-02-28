@@ -14,7 +14,14 @@
 </header>
 
 <% if session[:user_id] != nil %>
+
 <main class="form-group">
+  <div>Select tracking option:</div>
+    <form id="set_tracking" action="">
+      <input type="radio" name="tracking" value="0"> Current Location<br>
+      <input type="radio" name="tracking" value="1"> Bus Location<br>
+    </form>
+
   <div id="route">Select your Route:</div>
   <form id="set_route">
     <input class="form-control" id="route_id" type="text">
