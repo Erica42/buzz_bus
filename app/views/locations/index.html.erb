@@ -1,5 +1,5 @@
 <header>
-<h1>Station Location</h1>
+<h1>Buzz Bus</h1>
   <nav>
     <ul>
     <% if signed_in? %>
@@ -14,20 +14,23 @@
 </header>
 
 <% if session[:user_id] != nil %>
-<main>
+
+<main class="form-group">
   <div>Select tracking option:</div>
     <form id="set_tracking" action="">
       <input type="radio" name="tracking" value="0"> Current Location<br>
       <input type="radio" name="tracking" value="1"> Bus Location<br>
     </form>
+
   <div id="route">Select your Route:</div>
   <form id="set_route">
-    <input id="route_id" type="text">
-    <button id="set_route">Set Route</button>
+    <input class="form-control" id="route_id" type="text">
+    <button class="btn btn-default btn-lg">Set Route</button>
   </form>
-
-  <div id="route_form">
+  <form >
+  <div class="form-roup form-group-lg" id="route_form">
   </div>
+  </form>
 
   <div id="bus_form">
   </div>
