@@ -49,8 +49,12 @@ function callbackBus(response_json){
       busById.push(buses[i])
     }
   }
-  initMap(busById, stopLocation);
-  busGps = busById[0]
+  busGps = {
+    lat: busById[0].latitude,
+    lng: busById[0].longitude
+  }
+  console.log(busGps)
+  initMap(busGps, stopLocation);
 }
 
 function fetchBuses(userRoute){
