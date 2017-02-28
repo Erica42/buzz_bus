@@ -4,7 +4,7 @@ $(document).ready(function() {
     e.preventDefault();
     stopGps = JSON.parse(($('#select_location').val()))
     busId = $("#bus_label").val();
-    var trackingVal = $('input[name=tracking]:checked').val();
+    var trackingVal = $('.glyphicon').siblings().val();
     var stopLocation = { lat: stopGps[0], lng: stopGps[1] };
     var busLocation = { lat: 0, lng: 0 }
 
