@@ -19,6 +19,11 @@ function setBlueDot(setMap){
     var myloc = setBlueDot(map);
     var busloc = setBlueDot(map);
     if (navigator.geolocation) {
+      alert('Geolocation is supported!');
+          }
+      else {
+      alert('Geolocation is not supported for this Browser/OS version yet.');
+      }
       navigator.geolocation.getCurrentPosition(function(position) {
         this.user_pos = {
           lat: position.coords.latitude,
@@ -42,9 +47,9 @@ function setBlueDot(setMap){
   }
 };
 
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
+  function handleLocationError(browserHasGeolocation, map, pos) {
+        map.setPosition(pos);
+        map.setContent(browserHasGeolocation ?
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
   }
