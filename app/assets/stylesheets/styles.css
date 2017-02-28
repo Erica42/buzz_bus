@@ -11,30 +11,30 @@ html, body {
 main {
   display: inline-block;
   margin-top: 35px;
-  /*width: 25%;*/
   float:left;
 }
+  /*width: 25%;*/
 
-#route {
+/*#route {
   margin-bottom: 5px;
-}
-
+}*/
+/*
 #route_form {
   margin-top: 10px;
   margin-bottom: 5px;
-}
+}*/
 
-#bus_form {
+/*#bus_form {
   margin-top: 5px;
   margin-bottom: 5px;
-}
+}*/
 
 #stop_form {
   margin-top: 5px;
 }
 
-.button{
-  margin-left: 0px;
+.btn{
+  margin-top: 20px;
   border-radius: 10px;
   display: inline-block;
 }
@@ -108,6 +108,8 @@ input[type=submit] {
     font-family: Tahoma, Geneva, sans-serif;
     width: 100%;
 }
+
+
 
 #login {
   padding-top: 50px;
@@ -192,6 +194,10 @@ input[type=submit] {
     margin-top: 10px;
     height: 50%;
     width: 95%;
+    float: none;
+    display: none;
+    vertical-align: none;
+    margin-right: 10px;
   }
 
 /*  .form {
@@ -199,6 +205,8 @@ input[type=submit] {
   }*/
   main {
     width: 100%;
+    float: none;
+    display: block;
   }
 
   input {

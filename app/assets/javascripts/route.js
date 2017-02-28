@@ -53,10 +53,10 @@ function parseRoute(response) {
 
 function appendRouteSelect(directions) {
  if (directions.length > 1) {
- var form =  "<select id='direction' name='direction' form='direction'><option value=" + 1 + ">" + directions[0] + "</option><option value=" + 0 + ">" + directions[1] + "</option></select><button class='button' id='select_direction' type='submit'>Set Direction</button>"
+ var form =  "<select class='form-control' id='direction' name='direction' form='direction'><option value=" + 1 + ">" + directions[0] + "</option><option value=" + 0 + ">" + directions[1] + "</option></select><button class='btn btn-default btn-lg' id='select_direction' type='submit'>Set Direction</button>"
 }
 else {
- var form = "<select id='direction' name='direction' form='direction'><option value=" + 0 + ">" + directions + "</option></select><button class='button' id='select_direction' type='submit'>Set Direction</button>"
+ var form = "<select class='form-control' id='direction' name='direction' form='direction'><option value=" + 0 + ">" + directions + "</option></select><button class='btn btn-default btn-lg' id='select_direction' type='submit'>Set Direction</button>"
 }
   return form
 }
