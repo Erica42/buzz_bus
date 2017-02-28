@@ -19,7 +19,6 @@ function setBlueDot(setMap){
     var myloc = setBlueDot(map);
     var busloc = setBlueDot(map);
     if (navigator.geolocation) {
-      alert('Geolocation is supported!');
       navigator.geolocation.getCurrentPosition(
         function(position) {
           var user_pos = {
