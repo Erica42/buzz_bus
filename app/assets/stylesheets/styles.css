@@ -10,7 +10,6 @@ html, body {
 
 main {
   display: inline-block;
-  float: left;
   margin-top: 35px;
   width: 25%;
 }
@@ -19,17 +18,20 @@ main {
 }
 #route_form {
   margin-top: 10px;
+  margin-bottom: 5px;
+  /*margin-left: -3px;*/
 }
 
 #bus_form {
   margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #stop_form {
   margin-top: 5px;
 }
-#select_direction, #set_route {
-  margin-left: 8px;
+#select_direction, #set_route, #set_destination {
+  margin-left: 0px;
   border-radius: 3px;
 }
 
@@ -37,10 +39,7 @@ main {
 #map {
   display: inline-block;
   vertical-align: top;
-  height: 75%;
-  width: 65%;
   margin-right: 25px;
-  float: right;
 }
 
 .arrived {
@@ -193,10 +192,10 @@ input[type=submit] {
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
   #map {
     height: 50%;
-    width: 50%;
+    width: 85%;
   }
 
   .form {
@@ -206,4 +205,16 @@ input[type=submit] {
 select {
     width: 125px;
 }
+}
+
+@media screen and (min-width: 701px) {
+  #map {
+    float: right;
+    height: 75%;
+    width: 65%;
+  }
+
+  main{
+      float: left;
+  }
 }
