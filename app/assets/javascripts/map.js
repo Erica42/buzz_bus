@@ -11,13 +11,21 @@ function setBlueDot(setMap){
    return location;
  }
 
- function initMap(currentBus) {
-  console.log("initMap")
+ function setDestinationMarker(setMap){
+  var map = setMap;
+  var location = new google.maps.Marker({ clickable: false,icon: new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569'),
+      map: map
+  });
+   return location;
+ }
+
+ function initMap(currentBus, stopLocation) {
   if (currentBus != undefined) {
     var map = new google.maps.Map(document.getElementById('map'), { center: {lat: currentBus[0].latitude, lng: currentBus[0].longitude}, zoom: 15
       });
-    var myloc = setBlueDot(map);
+    var myloc = setDestinationMarker(map);
     var busloc = setBlueDot(map);
+    var destloc = setDestinationMarker(map);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function(position) {
@@ -29,10 +37,18 @@ function setBlueDot(setMap){
             lat: currentBus[0].latitude,
             lng: currentBus[0].longitude
           }
-          myloc.setPosition(user_pos);
-          map.setCenter(user_pos);
+          var destination_pos = {
+            lat: stopLocation[0],
+            lng: stopLocation[1]
+          }
+
+          // myloc.setPosition(user_pos);
+          // map.setCenter(user_pos);
+
           busloc.setPosition(bus_pos);
           map.setCenter(bus_pos);
+
+          destloc.setPosition(destination_pos);
         }, function() {
         handleLocationError(true, map, map.getCenter());
       });
