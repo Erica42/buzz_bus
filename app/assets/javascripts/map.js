@@ -20,22 +20,22 @@ function setBlueDot(setMap){
     var busloc = setBlueDot(map);
     if (navigator.geolocation) {
       alert('Geolocation is supported!');
-      navigator.geolocation.getCurrentPosition(function(position) {
-        this.user_pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        this.bus_pos = {
-          lat: currentBus[0].latitude,
-          lng: currentBus[0].longitude
-        }
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          var user_pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          var bus_pos = {
+            lat: currentBus[0].latitude,
+            lng: currentBus[0].longitude
+          }
           myloc.setPosition(user_pos);
           map.setCenter(user_pos);
           busloc.setPosition(bus_pos);
           map.setCenter(bus_pos);
-          }
-          , function() {
-              handleLocationError(true, map, map.getCenter());
+        }, function() {
+        handleLocationError(true, map, map.getCenter());
       });
     } else {
       alert('Geolocation is not supported for this Browser/OS version yet.');
