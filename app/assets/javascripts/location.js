@@ -1,9 +1,14 @@
 $(document).ready(function() {
   $("form#set_route").on('submit', function(e){
     e.preventDefault();
+    var trackingVal = $('input[name=tracking]:checked').val();
     userRoute = $("#route_id").val()
-    fetchBuses(userRoute);
-    fetchDirection(userRoute)
+    if (trackingVal === "0"){
+      fetchDirection(userRoute)
+    } else if(trackingVal === "1"){
+      fetchBuses(userRoute);
+      fetchDirection(userRoute)
+    }
   })
 
   $("#route_form").on('click', "#select_direction", function(e){

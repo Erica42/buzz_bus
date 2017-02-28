@@ -4,18 +4,24 @@ $(document).ready(function() {
     e.preventDefault();
     stopGps = JSON.parse(($('#select_location').val()))
     busId = $("#bus_label").val();
+    var trackingVal = $('input[name=tracking]:checked').val();
     var stopLocation = { lat: stopGps[0], lng: stopGps[1] };
     var busLocation = { lat: 0, lng: 0 }
-    fetchBus(busId, stopLocation);
-    var interval = setInterval(function(){
+
+    if (trackingVal === "0") {
+      navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
+    } else if (trackingVal === "1") {
       fetchBus(busId, stopLocation);
-      busLocation = { lat: busGps.latitude, lng: busGps.longitude }
-      if (arePointsNear(busLocation, stopLocation, .25)) {
+      var interval = setInterval(function(){
+        fetchBus(busId, stopLocation);
+        busLocation = { lat: busGps.latitude, lng: busGps.longitude }
+        if (arePointsNear(busLocation, stopLocation, .25)) {
         document.getElementById('phone').click();
         console.log("made it")
         clearInterval(interval);
-      }
-    }, 30000)
+        }
+      }, 30000)
+    }
   })
 });
 
@@ -34,6 +40,7 @@ function fetchBus(busId, stopLocation){
 
 function callbackBus(response_json){
   stopGps = JSON.parse(($('#select_location').val()));
+  var stopLocation = { lat: stopGps[0], lng: stopGps[1] };
   var buses = parseBus(response_json);
   var label = busId;
   var busById = [];
@@ -42,7 +49,7 @@ function callbackBus(response_json){
       busById.push(buses[i])
     }
   }
-  initMap(busById, stopGps);
+  initMap(busById, stopLocation);
   busGps = busById[0]
 }
 

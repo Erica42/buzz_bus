@@ -21,49 +21,55 @@ function setBlueDot(setMap){
 
  function initMap(currentBus, stopLocation) {
   if (currentBus != undefined) {
-    var map = new google.maps.Map(document.getElementById('map'), { center: {lat: currentBus[0].latitude, lng: currentBus[0].longitude}, zoom: 15
+    var map = new google.maps.Map(document.getElementById('map'), { center: {lat: currentBus.lat, lng: currentBus.lng }, zoom: 15
       });
-    var myloc = setDestinationMarker(map);
+
     var busloc = setBlueDot(map);
     var destloc = setDestinationMarker(map);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        function(position) {
-          var user_pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          var bus_pos = {
-            lat: currentBus[0].latitude,
-            lng: currentBus[0].longitude
-          }
-          var destination_pos = {
-            lat: stopLocation[0],
-            lng: stopLocation[1]
-          }
 
-          // myloc.setPosition(user_pos);
-          // map.setCenter(user_pos);
-
-          busloc.setPosition(bus_pos);
-          map.setCenter(bus_pos);
-
-          destloc.setPosition(destination_pos);
-        }, function() {
-        handleLocationError(true, map, map.getCenter());
-      });
-    } else {
-      alert('Geolocation is not supported for this Browser/OS version yet.');
-      handleLocationError(false, map, map.getCenter());
+    var bus_pos = {
+      lat: currentBus.lat,
+      lng: currentBus.lng
     }
+
+    var destination_pos = {
+      lat: stopLocation.lat,
+      lng: stopLocation.lng
+    }
+
+    busloc.setPosition(bus_pos);
+    map.setCenter(bus_pos);
+    destloc.setPosition(destination_pos);
   }
 };
 
-  function handleLocationError(browserHasGeolocation, map, pos) {
-        map.setPosition(pos);
-        map.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
+function geo_success(position) {
+  stopGps = JSON.parse(($('#select_location').val()));
+  var stopLocation = { lat: stopGps[0], lng: stopGps[1] };
+  var gpsLocation = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
   }
+  initMap(gpsLocation, stopLocation);
+  var interval = setInterval(function(){
+    initMap(gpsLocation, stopLocation);
+    if (arePointsNear(gpsLocation, stopLocation, .25)) {
+        document.getElementById('phone').click();
+        console.log("made it")
+        clearInterval(interval);
+    }
+  }, 30000)
+}
+
+function geo_error() {
+  alert("Sorry, no position available.");
+}
+
+var geo_options = {
+  enableHighAccuracy: true,
+  maximumAge        : 30000,
+  timeout           : 27000
+};
+
 
 
