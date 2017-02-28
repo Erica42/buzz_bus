@@ -20,10 +20,6 @@ function setBlueDot(setMap){
     var busloc = setBlueDot(map);
     if (navigator.geolocation) {
       alert('Geolocation is supported!');
-          }
-      else {
-      alert('Geolocation is not supported for this Browser/OS version yet.');
-      }
       navigator.geolocation.getCurrentPosition(function(position) {
         this.user_pos = {
           lat: position.coords.latitude,
@@ -42,6 +38,7 @@ function setBlueDot(setMap){
               handleLocationError(true, map, map.getCenter());
       });
     } else {
+      alert('Geolocation is not supported for this Browser/OS version yet.');
       handleLocationError(false, map, map.getCenter());
     }
   }
