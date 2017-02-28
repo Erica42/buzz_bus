@@ -1,8 +1,7 @@
 <div>Select your Bus:</div>
-<form class="form-control" id="select_bus">
-<div class="form-group form-group-lg">
-  <%= select_tag(:bus_label, options_for_select(all_buses), {}, {:class => 'form-control'}) %>
-  <!-- the class might be an issue, but buses are down so can't test -->
+<form id="select_bus">
+  <div class="form-group form-group-lg">
+    <%= select_tag(:bus_label, options_for_select(all_buses), {:class => 'form-control'}) %>
   </div>
 </form>
 
