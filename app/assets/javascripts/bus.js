@@ -13,12 +13,13 @@ $(document).ready(function() {
     } else if (trackingVal === "1") {
       fetchBus(busId, stopLocation);
       var interval = setInterval(function(){
-        fetchBus(busId, stopLocation);
         busLocation = { lat: busGps.lat, lng: busGps.lng }
         if (arePointsNear(busLocation, stopLocation, .25)) {
         document.getElementById('phone').click();
         console.log("made it")
         clearInterval(interval);
+        } else {
+          fetchBus(busId, stopLocation);
         }
       }, 30000)
     }
