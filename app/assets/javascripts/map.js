@@ -56,7 +56,7 @@ function geo_success(position) {
     if (arePointsNear(gpsLocation, stopLocation, .25)) {
         document.getElementById('phone').click();
         console.log("made it")
-        document.getElementById('phone').off();
+        $('#phone').off();
         clearInterval(interval);
     } else {
       navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options)
