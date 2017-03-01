@@ -2,6 +2,7 @@ $(document).ready(function() {
   busGps = null;
   $("#stop_form").on('click', "#set_destination", function(e){
     e.preventDefault();
+    document.getElementById('phone').on();
     stopGps = JSON.parse(($('#select_location').val()))
     busId = $("#bus_label").val();
     var trackingVal = $('.glyphicon').siblings().val();
@@ -17,6 +18,7 @@ $(document).ready(function() {
         if (arePointsNear(busLocation, stopLocation, .25)) {
         document.getElementById('phone').click();
         console.log("made it")
+        document.getElementById('phone').off();
         clearInterval(interval);
         } else {
           fetchBus(busId, stopLocation);
