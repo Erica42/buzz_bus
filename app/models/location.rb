@@ -21,9 +21,18 @@ class Location < ApplicationRecord
   		update = []
   		Route.pull_routes.each do |route|
   			direction = (count)
+
+        # make method that return boolean def verify_route_json_data
   			if Location.pull_stops(route["route_id"], direction) != nil
+
   				Location.pull_stops(route["route_id"], direction).each do |stop|
-  				update << {stop_id: stop["stop_id"].to_i, stop_name: stop["stop_name"], stop_desc: stop["stop_desc"], route_id: stop["route_id"], direction_id: stop["direction_id"].to_i, stop_lat: stop["stop_lat"], stop_lon: stop["stop_lon"]}
+  				update << {stop_id: stop["stop_id"].to_i,
+                    stop_name: stop["stop_name"],
+                    stop_desc: stop["stop_desc"],
+                    route_id: stop["route_id"],
+                    direction_id: stop["direction_id"].to_i,
+                    stop_lat: stop["stop_lat"],
+                    stop_lon: stop["stop_lon"]}
   				end
   			end
   		end
