@@ -43,10 +43,13 @@ function setBlueDot(setMap){
   }
 };
 
+function success(position){
+  var map = new google.maps.Map(document.getElementById('map'), { center: {lat: position.coords.latitude, lng: position.coords.longitude }, zoom: 12
+  });
+}
 function geo_success(position) {
   stopGps = JSON.parse(($('#select_location').val()));
   var stopLocation = { lat: stopGps[0], lng: stopGps[1] };
-  console.log(stopLocation)
   var gpsLocation = {
     lat: position.coords.latitude,
     lng: position.coords.longitude

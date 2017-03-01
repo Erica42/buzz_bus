@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  navigator.geolocation.getCurrentPosition(success, geo_error, geo_options)
   busGps = null;
   $("#stop_form").on('click', "#set_destination", function(e){
     e.preventDefault();
