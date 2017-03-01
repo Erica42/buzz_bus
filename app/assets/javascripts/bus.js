@@ -9,7 +9,7 @@ $(document).ready(function() {
     var busLocation = { lat: 0, lng: 0 }
 
     if (trackingVal === "0") {
-      navigator.geolocation.watchPosition(geo_success, geo_error, geo_options);
+      navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options);
     } else if (trackingVal === "1") {
       fetchBus(busId, stopLocation);
       var interval = setInterval(function(){

@@ -58,9 +58,10 @@ function geo_success(position) {
         console.log("made it")
         clearInterval(interval);
     } else {
+      navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options)
       initMap(gpsLocation, stopLocation);
     }
-  }, 30000)
+  }, 15000)
 }
 
 function geo_error() {
@@ -69,8 +70,8 @@ function geo_error() {
 
 var geo_options = {
   enableHighAccuracy: true,
-  maximumAge        : 30000,
-  timeout           : 27000
+  // maximumAge        : 30000,
+  // timeout           : 27000
 };
 
 //Useful function for verifying if they are using a mobile browser
