@@ -59,11 +59,12 @@ function geo_success(position) {
   }
   initMap(gpsLocation, stopLocation);
   var interval = setInterval(function(){
-    initMap(gpsLocation, stopLocation);
     if (arePointsNear(gpsLocation, stopLocation, .25)) {
         document.getElementById('phone').click();
         console.log("made it")
         clearInterval(interval);
+    } else {
+      initMap(gpsLocation, stopLocation);
     }
   }, 30000)
 }
