@@ -1,9 +1,12 @@
 <header>
-<h1>Station Location</h1>
+<div class='title'>
+  <%= image_tag('buzz_bus.png', :size => "100x100") %>
+  <h1>Buzz Bus</h1>
+</div>
   <nav>
     <ul>
     <% if signed_in? %>
-      <li><%= link_to current_user.email, current_user %></li>
+      <li<a><%= current_user.email %></a></li>
       <li><a id="phone" href='/locations/new'><%= User.find(session[:user_id]).phone %></a></li>
       <li><%= link_to "Sign Out", signout_path, method: :delete %></li>
     <% else %>
@@ -14,24 +17,46 @@
 </header>
 
 <% if session[:user_id] != nil %>
-<main>
-  <div id="route">Select your Route:</div>
-  <form id="set_route">
-    <input id="route_id" type="text">
-    <button id="set_route">Set Route</button>
-  </form>
+<!-- <div class="container-fluid"> -->
+  <main class="form-group">
+    <!-- <div class='col-sm-4'> -->
+      <div>Select tracking option:
+      </div>
+      <form id="set_tracking" action="">
+      <div data-toggle="buttons">
+        <label class="btn btn-default btn-circle btn-lg">
+          <input type="radio" name="tracking" value="0">
+        </label><br> Current Location<br>
+        <label class="btn btn-default btn-circle btn-lg">
+          <input type="radio" name="tracking" value="1">
+        </label><br> Bus Location<br>
+      </div>
 
-  <div id="route_form">
-  </div>
+      <!--   <input class='btn-circle' type="radio" name="tracking" value="0"> Current Location<br>
+        <input class='btn-circle' type="radio" name="tracking" value="1"> Bus Location<br> -->
+      </form>
 
-  <div id="bus_form">
-  </div>
+      <div id="route">Select your Route:
+      </div>
+        <form id="set_route">
+          <input class="form-control" id="route_id" type="text">
+          <button class="btn btn-default btn-lg">Set Route</button>
+        </form>
+        <form >
+          <div class="form-roup form-group-lg" id="route_form">
+          </div>
+        </form>
 
-  <div id="stop_form">
-  </div>
+      <div id="bus_form">
+      </div>
 
-<% end %>
-</main>
+      <div id="stop_form">
+      </div>
 
-<div id="map"></div>
-
+    <!-- </div> -->
+  </main>
+  <% end %>
+  <!-- <div class="col-sm-8"> -->
+    <div id="map"></div>
+  <!-- </div> -->
+<!-- </div> -->

@@ -1,3 +1,6 @@
+header {
+  padding: 50px;
+}
 html, body {
   margin: 0 auto;
   height: 100%;
@@ -8,50 +11,55 @@ html, body {
   color: #fff;
 }
 
-main {
+.title img {
   display: inline-block;
-  margin-top: 35px;
-  width: 25%;
+  vertical-align: top;
+  margin-top: -15px;
 }
-#route{
-  margin-bottom: 5px;
-}
-#route_form {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  /*margin-left: -3px;*/
-}
-
-#bus_form {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-#stop_form {
-  margin-top: 5px;
-}
-#select_direction, #set_route, #set_destination {
-  margin-left: 0px;
-  border-radius: 3px;
-}
-
-
-#map {
+.title h1 {
   display: inline-block;
   vertical-align: top;
   margin-right: 25px;
 }
 
-.arrived {
-  color: red;
+main {
+  display: inline-block;
+  margin-top: 35px;
+  float:left;
+}
+  /*width: 25%;*/
+
+/*#route {
+  margin-bottom: 5px;
+}*/
+/*
+#route_form {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}*/
+
+/*#bus_form {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}*/
+
+#stop_form {
+  margin-top: 5px;
 }
 
-.form {
+.btn{
+  margin-top: 20px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+#map {
   display: inline-block;
   vertical-align: top;
-  float: left;
-  width: 20%;
-  margin-top: 30px;
+  margin-right: 25px;
+  float: right;
+  height: 75%;
+  width: 65%;
 }
 
 h1 {
@@ -59,8 +67,8 @@ h1 {
 }
 
 nav {
+  vertical-align: top;
   text-align: right;
-  margin-right: 25px;
   float: right;
 }
 
@@ -81,6 +89,7 @@ nav a:hover {
   color: #293f50;
   background-color: #fff;
   font-weight: bold;
+  text-decoration: none;
 }
 
 #phone {
@@ -92,7 +101,7 @@ select {
     border: 1px solid #AAA;
     border-radius: 2px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-    color: #555;
+    color: #555; /*Davy's gray not my fav*/
     font-size: inherit;
     margin: 0;
     overflow: hidden;
@@ -105,14 +114,16 @@ select {
 input[type=submit] {
     margin-top: 10px;
     padding: 3px 15px;
-    background:#ccc;
+    background: #ccc;
     border:0 none;
     -webkit-border-radius: 2px;
     border-radius: 2px;
     font-size: 14px;
     height: 25px;
     font-family: Tahoma, Geneva, sans-serif;
+    width: 100%;
 }
+
 
 #login {
   padding-top: 50px;
@@ -191,30 +202,86 @@ input[type=submit] {
   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
+.btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+      }
 
-@media screen and (max-width: 700px) {
+.btn-circle.btn-lg {
+        width: 50px;
+        height: 50px;
+        padding: 13px 13px;
+        font-size: 18px;
+        line-height: 1.33;
+        border-radius: 25px;
+      }
+
+.col-sm-4 {
+  color: #000;
+  font-weight: bold;
+}
+.control-label {
+  color: white;
+}
+
+@media (max-width: 720px) {
   #map {
+    margin-top: 30px;
     height: 50%;
-    width: 85%;
+    width: 95%;
+    float: none;
+    display: block;
+    vertical-align: none;
+    margin-right: 10px;
+    text-align: center;
+    margin-bottom: 10px;
   }
 
-  .form {
-  width: 10%;
+/*  .form {
+  width: 100%;
+  }*/
+  main {
+    width: 100%;
+    float: none;
+    display: block;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  select {
+    width: 400px;
+  }
+}
+#route {
+  margin-top: 10px;
 }
 
-select {
-    width: 125px;
-}
-}
-
-@media screen and (min-width: 701px) {
+@media only screen and (max-device-width: 650px) {
   #map {
-    float: right;
-    height: 75%;
-    width: 65%;
-  }
-
-  main{
-      float: left;
+    width: 98%;
+    height: 50%;
+    display: inline-block;
+    text-align: center;
   }
 }
+
+/*.form {
+  display: inline-block;
+  vertical-align: top;
+  float: left;
+  width: 20%;
+  margin-top: 30px;
+}*/
+
+/*#select_direction, #set_route, #set_destination {
+  margin-left: 0px;
+  border-radius: 3px;
+  display: inline-block;
+}*/
