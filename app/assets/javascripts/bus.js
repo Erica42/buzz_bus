@@ -4,7 +4,7 @@ $(document).ready(function() {
     e.preventDefault();
     stopGps = JSON.parse(($('#select_location').val()))
     busId = $("#bus_label").val();
-    var trackingVal = $('input[name=tracking]:checked').val();
+    var trackingVal = $('.glyphicon').siblings().val();
     var stopLocation = { lat: stopGps[0], lng: stopGps[1] };
     var busLocation = { lat: 0, lng: 0 }
 
@@ -13,12 +13,13 @@ $(document).ready(function() {
     } else if (trackingVal === "1") {
       fetchBus(busId, stopLocation);
       var interval = setInterval(function(){
-        fetchBus(busId, stopLocation);
-        busLocation = { lat: busGps.latitude, lng: busGps.longitude }
+        busLocation = { lat: busGps.lat, lng: busGps.lng }
         if (arePointsNear(busLocation, stopLocation, .25)) {
         document.getElementById('phone').click();
         console.log("made it")
         clearInterval(interval);
+        } else {
+          fetchBus(busId, stopLocation);
         }
       }, 30000)
     }

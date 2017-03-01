@@ -1,3 +1,6 @@
+header {
+  padding: 50px;
+}
 html, body {
   margin: 0 auto;
   height: 100%;
@@ -9,13 +12,14 @@ html, body {
 }
 
 .title img {
-  margin-top: -20px;
-  float: left;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -15px;
 }
 .title h1 {
-  position: relative;
-  top: 18px;
-  left: 10px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 25px;
 }
 
 main {
@@ -63,8 +67,8 @@ h1 {
 }
 
 nav {
+  vertical-align: top;
   text-align: right;
-  margin-right: 25px;
   float: right;
 }
 
@@ -85,6 +89,7 @@ nav a:hover {
   color: #293f50;
   background-color: #fff;
   font-weight: bold;
+  text-decoration: none;
 }
 
 #phone {
@@ -98,12 +103,12 @@ select {
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
     color: #555; /*Davy's gray not my fav*/
     font-size: inherit;
- /*   margin: 0;
+    margin: 0;
     overflow: hidden;
     padding-top: 2px;
     padding-bottom: 2px;
-    text-overflow: ellipsis;*/
-/*    white-space: nowrap;*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 input[type=submit] {
@@ -197,9 +202,31 @@ input[type=submit] {
   -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
-.col-sm-6 {
+.btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+      }
+
+.btn-circle.btn-lg {
+        width: 50px;
+        height: 50px;
+        padding: 13px 13px;
+        font-size: 18px;
+        line-height: 1.33;
+        border-radius: 25px;
+      }
+
+.col-sm-4 {
   color: #000;
   font-weight: bold;
+}
+.control-label {
+  color: white;
 }
 
 @media (max-width: 720px) {
@@ -214,7 +241,7 @@ input[type=submit] {
     text-align: center;
     margin-bottom: 10px;
   }
-  
+
 /*  .form {
   width: 100%;
   }*/
@@ -231,6 +258,9 @@ input[type=submit] {
   select {
     width: 400px;
   }
+}
+#route {
+  margin-top: 10px;
 }
 
 @media only screen and (max-device-width: 650px) {

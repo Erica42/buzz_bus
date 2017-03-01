@@ -1,7 +1,8 @@
 $(document).ready(function() {
   $("form#set_route").on('submit', function(e){
     e.preventDefault();
-    var trackingVal = $('input[name=tracking]:checked').val();
+    var trackingVal = $('.glyphicon').siblings().val();
+    console.log(trackingVal)
     userRoute = $("#route_id").val()
     if (trackingVal === "0"){
       fetchDirection(userRoute)
@@ -25,6 +26,13 @@ $(document).ready(function() {
       $("#stop_form").append(response)
     });
   });
+
+  $(".btn-circle").on("click", function(e){
+    e.preventDefault();
+    var imgSelect = $(this).find('input');
+    $('.glyphicon').remove()
+    imgSelect.after('<i class="glyphicon glyphicon-ok"></i>');
+  })
 });
 
 

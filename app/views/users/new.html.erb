@@ -7,26 +7,27 @@
         <li class="error"><%= x %></li>
       <%end%>
     </ul>
-  <%end%> 
+  <%end%>
   <%= form_for(:user, url: users_path, html: { class: "form-horizontal" }) do |f| %>
     <div class="form-group">
       <%= f.label :name, class: "col-sm-2 control-label" %>
-      <div class="col-sm-6"><%= f.text_field :name %></div>
+      <div class="col-sm-4"><%= f.text_field :name %></div>
     </div>
     <div class="form-group">
       <%= f.label :email, class: "col-sm-2 control-label" %>
-      <div class="col-sm-6"><%= f.text_field :email %></div>
+      <div class="col-sm-4"><%= f.text_field :email %></div>
     </div>
     <div class="form-group">
       <%= f.label :phone, class: "col-sm-2 control-label" %>
-      <div class="col-sm-6"><%= f.text_field :phone, placeholder: "555-555-5555" %></div>
+
+      <div class="col-sm-4"><%= f.text_field :phone, placeholder: "555-555-5555" %></div>
     </div>
     <div class="form-group">
       <%= f.label :password, class: "col-sm-2 control-label" %>
-      <div class="col-sm-6"><%= f.password_field :password %></div>
+      <div class="col-sm-4"><%= f.password_field :password %></div>
     </div>
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-6"><%= f.submit "Sign Up", class: "btn btn-large btn-primary" %></div>
+      <div class="col-sm-offset-2 col-sm-2"><%= f.submit "Sign Up", class: "btn btn-large btn-primary" %></div>
     </div>
   <% end %>
   </div>
