@@ -14,7 +14,7 @@ $(document).ready(function() {
       fetchBus(busId, stopLocation);
       var interval = setInterval(function(){
         fetchBus(busId, stopLocation);
-        busLocation = { lat: busGps.latitude, lng: busGps.longitude }
+        busLocation = { lat: busGps.lat, lng: busGps.lng }
         if (arePointsNear(busLocation, stopLocation, .25)) {
         document.getElementById('phone').click();
         console.log("made it")
