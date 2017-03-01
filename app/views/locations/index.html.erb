@@ -19,13 +19,13 @@
 
 <% if session[:user_id] != nil %>
   <main class="form-group">
-      <div>Select tracking option:
-      </div>
+      <div>Select tracking option:</div>
       <form id="set_tracking" action="">
       <div data-toggle="buttons">
         <label class="btn btn-default btn-circle btn-lg">
           <input type="radio" name="tracking" value="0">
-        </label><br> Current Location<br>
+        </label>
+        <br> Current Location<br>
         <label class="btn btn-default btn-circle btn-lg">
           <input type="radio" name="tracking" value="1">
         </label><br> Bus Location<br>
@@ -38,7 +38,7 @@
           <input class="form-control" id="route_id" type="text">
           <button class="btn btn-default btn-lg">Set Route</button>
         </form>
-        <form >
+        <form>
           <div class="form-roup form-group-lg" id="route_form">
           </div>
         </form>
