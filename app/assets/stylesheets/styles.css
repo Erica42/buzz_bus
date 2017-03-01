@@ -1,6 +1,7 @@
 header {
-  padding: 50px;
+  padding: 25px;
 }
+
 html, body {
   margin: 0 auto;
   height: 100%;
@@ -24,33 +25,20 @@ html, body {
 
 main {
   display: inline-block;
-  margin-top: 35px;
-  float:left;
+  float: left;
 }
-  /*width: 25%;*/
-
-/*#route {
-  margin-bottom: 5px;
-}*/
-/*
-#route_form {
-  margin-top: 10px;
-  margin-bottom: 5px;
-}*/
-
-/*#bus_form {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}*/
 
 #stop_form {
   margin-top: 5px;
 }
 
-.btn{
+.btn {
   margin-top: 20px;
   border-radius: 10px;
   display: inline-block;
+}
+.btn-primary {
+  color: #000;
 }
 
 #map {
@@ -229,6 +217,9 @@ input[type=submit] {
   color: white;
 }
 
+#direction {
+  margin-top: 15px;
+}
 @media (max-width: 720px) {
   #map {
     margin-top: 30px;
@@ -242,9 +233,7 @@ input[type=submit] {
     margin-bottom: 10px;
   }
 
-/*  .form {
-  width: 100%;
-  }*/
+
   main {
     width: 100%;
     float: none;
@@ -272,16 +261,3 @@ input[type=submit] {
   }
 }
 
-/*.form {
-  display: inline-block;
-  vertical-align: top;
-  float: left;
-  width: 20%;
-  margin-top: 30px;
-}*/
-
-/*#select_direction, #set_route, #set_destination {
-  margin-left: 0px;
-  border-radius: 3px;
-  display: inline-block;
-}*/
