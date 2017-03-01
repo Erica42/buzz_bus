@@ -11,10 +11,11 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDooIF08mMEEguEYandpeyRUdDwDaMNgh8&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_KEY'] %>&callback=initMap">
   </script>
 </head>
 <body>
+
   <%= yield %>
 </body>
 </html>
