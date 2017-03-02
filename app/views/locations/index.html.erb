@@ -17,8 +17,8 @@
   </nav>
 </header>
 
-<% if session[:user_id] != nil %>
-  <main class="form-group">
+  <% if session[:user_id] != nil %>
+    <main class="form-group">
       <div>Select tracking option:</div>
       <form id="set_tracking" action="">
       <div data-toggle="buttons">
@@ -35,23 +35,26 @@
 
       <div id="route">Select your Route:
       </div>
-        <form id="set_route">
-          <input class="form-control" id="route_id" type="text">
-          <button class="btn btn-default btn-lg">Set Route</button>
-        </form>
-        <form>
-          <div class="form-roup form-group-lg" id="route_form">
-          </div>
-        </form>
+      <form id="set_route">
+        <input class="form-control" id="route_id" type="text">
+        <button class="btn btn-default btn-lg">Set Route</button>
+      </form>
+      <form>
+        <div class="form-roup form-group-lg" id="route_form">
+        </div>
+      </form>
 
       <div id="bus_form">
       </div>
 
       <div id="stop_form">
       </div>
-  </main>
+    </main>
   <% end %>
   <div id="map"></div>
+  <form id="stop_tracking">
+    <button id="reset" class="btn btn-default btn-lg">Stop Tracking</button>
+  </form>
 
 
 
