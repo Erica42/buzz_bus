@@ -4,7 +4,11 @@ $(document).ready(function() {
   busGps = null;
   $("#stop_form").on('click', "#set_destination", function(e){
     e.preventDefault();
-    console.log("test")
+
+    if (screen.width <= 650) {
+      $("main").hide();
+    }
+
     $('#phone').on();
     stopGps = JSON.parse(($('#select_location').val()))
     busId = $("#bus_label").val();
