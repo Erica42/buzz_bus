@@ -1,13 +1,23 @@
 $(document).ready(function() {
+  $("#stop_tracking").hide();
+
   $("#map").removeClass("add_border");
+
   navigator.geolocation.getCurrentPosition(success, geo_error, geo_options)
   busGps = null;
+
+  $("#stop_tracking").on("click", function(e){
+    location.reload();
+  })
+
   $("#stop_form").on('click', "#set_destination", function(e){
     e.preventDefault();
 
     if (screen.width <= 650) {
       $("main").hide();
     }
+
+    $("#stop_tracking").show();
 
     $('#phone').on();
     stopGps = JSON.parse(($('#select_location').val()))
