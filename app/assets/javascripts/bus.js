@@ -18,7 +18,7 @@ $(document).ready(function() {
       fetchBus(busId, stopLocation);
       var interval = setInterval(function(){
         busLocation = { lat: busGps.lat, lng: busGps.lng }
-        if (arePointsNear(busLocation, stopLocation, .25)) {
+        if (arePointsNear(busLocation, stopLocation, .5)) {
         document.getElementById('phone').click();
         console.log("made it")
         $('#phone').off();
@@ -26,7 +26,7 @@ $(document).ready(function() {
         } else {
           fetchBus(busId, stopLocation);
         }
-      }, 30000)
+      }, 20000)
     }
   })
 });
