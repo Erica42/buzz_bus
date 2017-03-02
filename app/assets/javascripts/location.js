@@ -2,7 +2,6 @@ $(document).ready(function() {
   $("form#set_route").on('submit', function(e){
     e.preventDefault();
     var trackingVal = $('.glyphicon').siblings().val();
-    console.log(trackingVal)
     userRoute = $("#route_id").val()
     if (trackingVal === "0"){
       fetchDirection(userRoute)
@@ -20,7 +19,6 @@ $(document).ready(function() {
       method: "POST",
       data: {route_id: userRoute, direction_id: routeDirection}
     }).done(function(response){
-      console.log("fired")
       $("#bus_form").show();
       $("#stop_form").html("");
       $("#stop_form").append(response)
@@ -32,6 +30,16 @@ $(document).ready(function() {
     var imgSelect = $(this).find('input');
     $('.glyphicon').remove()
     imgSelect.after('<i class="glyphicon glyphicon-ok"></i>');
+  });
+
+  $("#phone").on('click', function(e){
+    e.preventDefault();
+    $.get('/locations/new');
+  })
+
+  $('.modal').on('hidden.bs.modal', function (e) {
+    console.log("hidden");
+    window.location.reload();
   })
 });
 

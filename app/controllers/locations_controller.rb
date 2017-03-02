@@ -21,17 +21,17 @@ class LocationsController < ApplicationController
   def new
     @user = User.find(current_user)
     @client = Twilio::REST::Client.new
-  #   @client.messages.create(
-  #   from: '+18489995632',
-  #   to: '+18482506213',
-  #   body: 'You Have Arrived!'
-  # )
+    #   @client.messages.create(
+    #   from: '+18489995632',
+    #   to: '+18482506213',
+    #   body: 'You Have Arrived!'
+    # )
     @call = @client.calls.create(
-    from: '+18489995632',
-    to: "#{@user.phone}",
-    url: 'http://example.com/call-handler'
-  )
-    redirect_to locations_path
+      from: '+18489995632',
+      to: "#{@user.phone}",
+      url: 'http://example.com/call-handler'
+    )
+    render json: { success: true }
   end
 
 end

@@ -62,6 +62,7 @@ function geo_success(position) {
         document.getElementById('phone').click();
         console.log("made it")
         $('#phone').off();
+        $(".modal").modal('show');
         clearInterval(interval);
     } else {
       navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options)

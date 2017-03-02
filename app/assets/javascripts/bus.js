@@ -36,6 +36,7 @@ $(document).ready(function() {
         document.getElementById('phone').click();
         console.log("made it")
         $('#phone').off();
+        $(".modal").modal('show');
         clearInterval(interval);
         } else {
           fetchBus(busId, stopLocation);
@@ -73,7 +74,6 @@ function callbackBus(response_json){
     lat: busById[0].latitude,
     lng: busById[0].longitude
   }
-  console.log(busGps)
   initMap(busGps, stopLocation);
 }
 

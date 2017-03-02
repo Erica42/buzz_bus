@@ -308,3 +308,7 @@ input[type=submit] {
   }
 }
 
+
+.modal .modal-content .modal-title {
+  color: #00a937;
+}
