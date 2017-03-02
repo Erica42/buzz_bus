@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("#map").css("border", "none")
+  $("#map").removeClass("add_border");
   navigator.geolocation.getCurrentPosition(success, geo_error, geo_options)
   busGps = null;
   $("#stop_form").on('click', "#set_destination", function(e){
