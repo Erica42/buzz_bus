@@ -46,9 +46,9 @@ function setBlueDot(setMap){
 function success(position){
   var map = new google.maps.Map(document.getElementById('map'), { center: {lat: position.coords.latitude, lng: position.coords.longitude }, zoom: 12
   });
-  $("#map").css({"border-color": "#009688",
-             "border-width":"10px",
-             "border-style":"solid"})
+  // $("#map").css({"border-color": "#009688",
+  //            "border-width":"10px",
+  //            "border-style":"solid"})
 }
 
 function geo_success(position) {
