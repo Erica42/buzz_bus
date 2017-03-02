@@ -235,6 +235,12 @@ input[type=submit] {
 #direction {
   margin-top: 15px;
 }
+
+.row {
+    margin-top: 20px;
+    margin-left: 10%;
+    width: 75%;
+  }
 @media (max-width: 720px) {
   #map {
     margin-top: 30px;
@@ -277,7 +283,7 @@ input[type=submit] {
   }
 
   header {
-    width: 115%;
+    width: 113%;
   }
 
   nav {
