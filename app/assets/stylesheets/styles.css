@@ -269,16 +269,26 @@ input[type=submit] {
 
 @media only screen and (max-device-width: 650px) {
   #map {
-    width: 95%;
+    width: 90%;
     height: 50%;
     display: inline-block;
     text-align: center;
-    margin-left: 10px;
+    margin-left: 20px;
   }
+
+  header {
+    width: 115%;
+  }
+
+  nav {
+    padding-right: 35px;
+  }
+
   main {
     margin-top: 20px;
-    margin-left: 15px;
+    margin-left: 25px;
   }
+
   .form-control {
     width: 75%;
   }
