@@ -16,6 +16,7 @@ $(document).ready(function() {
     if (screen.width <= 650) {
       $("main").hide();
     }
+
     $("#stop_tracking").show();
 
     $('#phone').on();
