@@ -44,6 +44,7 @@ function setBlueDot(setMap){
 };
 
 function success(position){
+  $("#map-loading").remove();
   var map = new google.maps.Map(document.getElementById('map'), { center: {lat: position.coords.latitude, lng: position.coords.longitude }, zoom: 12
   });
   $("#map").addClass("add_border");

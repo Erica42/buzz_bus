@@ -322,3 +322,15 @@ input[type=submit] {
 .modal .modal-content .modal-title {
   color: #00a937;
 }
+
+#map-loading {
+  text-align:center;
+  margin-top: 40px;
+}
+
+#map-loading span {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
