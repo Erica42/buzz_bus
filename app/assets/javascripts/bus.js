@@ -13,10 +13,7 @@ $(document).ready(function() {
   $("#stop_form").on('click', "#set_destination", function(e){
     e.preventDefault();
 
-    if (screen.width <= 650) {
-      $("main").hide();
-    }
-
+    $("main").hide();
     $("#stop_tracking").show();
 
     $('#phone').on();
